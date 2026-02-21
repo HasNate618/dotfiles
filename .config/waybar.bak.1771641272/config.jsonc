@@ -1,0 +1,205 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 18,
+  "height": 40,
+  "modules-left": ["custom/omarchy", "hyprland/workspaces", "custom/media-prev", "custom/media-playpause", "custom/media-next"],
+  "modules-center": ["custom/clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
+  "modules-right": [
+    "group/tray-expander",
+    "bluetooth",
+    "custom/ram",
+    "cpu",
+    "custom/volume",
+    "network",
+    "custom/battery"
+  ],
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "active": "󱓻"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+  "custom/omarchy": {
+    "format": "<span font='omarchy'>\ue900</span>",
+    "on-click": "omarchy-menu",
+    "on-click-right": "xdg-terminal-exec",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
+
+  "custom/media-prev": {
+    "exec": "/home/nate/.config/waybar/scripts/media_prev.sh",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{text}",
+    "tooltip": false,
+    "on-click": "/home/nate/.config/waybar/scripts/media_control.sh prev"
+  },
+  "custom/media-playpause": {
+    "exec": "/home/nate/.config/waybar/scripts/media_playpause.sh",
+    "return-type": "json",
+    "interval": 1,
+    "format": "{text}",
+    "tooltip": false,
+    "on-click": "/home/nate/.config/waybar/scripts/media_control.sh playpause"
+  },
+  "custom/media-next": {
+    "exec": "/home/nate/.config/waybar/scripts/media_next.sh",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{text}",
+    "tooltip": false,
+    "on-click": "/home/nate/.config/waybar/scripts/media_control.sh next"
+  },
+  "custom/update": {
+    "format": "",
+    "exec": "omarchy-update-available",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "Omarchy update available",
+    "signal": 7,
+    "interval": 21600
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": "{usage}% 󰍛",
+    "on-click": "omarchy-launch-or-focus-tui btop",
+    "on-click-right": "alacritty"
+  },
+  "custom/ram": {
+    "exec": "/home/nate/.config/waybar/scripts/ram_usage_percent.sh",
+    "return-type": "json",
+    "interval": 5,
+    "format": "{text}",
+    "tooltip": true
+  },
+
+  "custom/clock": {
+    "exec": "/home/nate/.config/waybar/scripts/clock_custom.sh",
+    "return-type": "json",
+    "interval": 30,
+    "format": "{text}",
+    "tooltip": true,
+    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+  },
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "omarchy-launch-wifi"
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{time} {capacity}%",
+    "format-charging": "{icon}",
+    "format-plugged": "",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅",
+    "tooltip": true,
+    "tooltip-format-discharging": "{time} remaining • {capacity}% ({power:>1.0f}W)",
+    "tooltip-format-charging": "{time} until full • {capacity}% ({power:>1.0f}W)",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+  "bluetooth": {
+    "format": "",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "omarchy-launch-bluetooth"
+  },
+  "custom/volume": {
+    "exec": "/home/nate/.config/waybar/scripts/volume_status.sh",
+    "return-type": "json",
+    "interval": 1,
+    "format": "{text}",
+    "tooltip": true,
+    "on-click": "omarchy-launch-audio",
+    "on-click-right": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5"
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+  "custom/expand-icon": {
+    "format": "",
+    "tooltip": false,
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+    "on-scroll-left": "",
+    "on-scroll-right": ""
+  },
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy-cmd-screenrecord",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+
+  "custom/battery": {
+    "exec": "/home/nate/.config/waybar/scripts/battery_time.sh",
+    "interval": 30,
+    "on-click": "omarchy-menu power",
+    "tooltip": true,
+    "return-type": "json"
+  }
+}
