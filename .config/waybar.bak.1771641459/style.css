@@ -1,0 +1,161 @@
+@import "../omarchy/current/theme/waybar.css";
+@import "custom_overrides.css";
+
+
+* {
+  background: transparent;
+  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+}
+
+/* three floating containers for left, center, right groups */
+.modules-left {
+  margin-left: 10px;
+  margin-top: 8px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background-color: rgba(18,17,17,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.modules-center {
+  margin-top: 8px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background-color: rgba(18,17,17,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.modules-right {
+  margin-right: 10px;
+  margin-top: 8px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background-color: rgba(18,17,17,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* tighter spacing for the inline media controls */
+.modules-left > #custom-media-prev,
+.modules-left > #custom-media-playpause,
+.modules-left > #custom-media-next {
+  margin: 0 2px;
+  padding: 0 2px;
+}
+
+#custom-omarchy,
+#custom-media,
+#clock,
+#custom-update,
+#custom-voxtype,
+#custom-screenrecording-indicator,
+#custom-expand-icon,
+#tray,
+#bluetooth,
+#network,
+#custom-volume,
+#cpu,
+#custom-battery {
+  margin: 0 5px;
+  padding: 0;
+}
+
+#tray {
+  margin-right: 4px;
+}
+
+#custom-update,
+#custom-screenrecording-indicator {
+  font-size: 13px;
+}
+
+#custom-screenrecording-indicator.active,
+#custom-voxtype.recording {
+  color: #a55555;
+}
+
+menu, .menu, tooltip, window#waybar menu, window#waybar .menu, window#waybar #tray menu {
+  /* semi-opaque so Hyprland's ignore_alpha blur affects only menu area */
+  background-color: rgba(18,17,17,0.26);
+  color: @foreground;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+window#waybar menu separator {
+  min-height: 1px;
+  background: rgba(255,255,255,0.03);
+  margin: 6px 0;
+}
+
+/* generic menu items */
+window#waybar menu *, window#waybar .menu * {
+  background: transparent;
+  color: @foreground;
+  padding: 6px 8px;
+  margin: 2px 0;
+}
+
+/* compact tray context menus */
+window#waybar #tray menu,
+window#waybar #tray .menu {
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+window#waybar #tray menu *,
+window#waybar #tray .menu * {
+  background: transparent;
+  color: @foreground;
+  padding: 4px 6px;
+  margin: 0;
+  font-size: 13px;
+}
+
+window#waybar #tray menu separator,
+window#waybar #tray .menu separator {
+  min-height: 1px;
+  background: rgba(255,255,255,0.03);
+  margin: 4px 0;
+}
+
+/* keep tooltip/menu alpha above Hyprland's ignore_alpha threshold so blur is applied */
+
+.hidden {
+  opacity: 0;
+}
+
+
+/* override workspaces button sizing */
+#workspaces button {
+  all: unset;
+  min-width: 16px;
+  min-height: 20px;
+  padding: 0 6px;
+  margin: 0 2px;
+  color: @foreground;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 15px;
+}
+
+#workspaces button.empty {
+  opacity: 0.35;
+  color: rgba(220, 252, 231, 0.35);
+}
+
+#workspaces button.active {
+  opacity: 1;
+}
+
+/* neutralize circular backgrounds from imported themes */
+.modules-left *, .modules-center *, .modules-right * {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
