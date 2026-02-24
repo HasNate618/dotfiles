@@ -114,7 +114,22 @@ if [ -n "$BAT_SYSFS" ] && [ -d "$BAT_SYSFS" ]; then
 fi
 
 # Normalize status lowercase
+# detect AC adapter online state (prefer AC0 if present)
+AC_ONLINE=0
+for d in /sys/class/power_supply/*; do
+  if [ -f "$d/online" ]; then
+    val=$(cat "$d/online" 2>/dev/null || echo 0)
+    if [ "$val" -eq 1 ] 2>/dev/null; then
+      AC_ONLINE=1
+      break
+    fi
+  fi
+done
 status_lc=$(echo "$status" | tr '[:upper:]' '[:lower:]')
+# if AC is online, prefer charging status so icons reflect plugged-in state
+if [ "$AC_ONLINE" -eq 1 ]; then
+  status_lc="charging"
+fi
 
 # Choose icon based on capacity and status
 cap_int=""
@@ -124,21 +139,32 @@ if [ -n "$capacity" ]; then
   fi
 fi
 
-if [[ "$status_lc" == *"charging"* ]]; then
-  if [ -n "$cap_int" ]; then
-    idx=$((cap_int / 10))
-    if [ "$idx" -ge 10 ]; then idx=9; fi
-    icon="${CHARGING_ICONS[$idx]}"
-  else
-    icon="$ICON_CHARGING"
-  fi
-elif [[ "$status_lc" == *"disch"* ]] || [[ "$status_lc" == *"discharging"* ]]; then
+if [[ "$status_lc" == *"disch"* ]] || [[ "$status_lc" == *"discharging"* ]]; then
+  # discharging: use default (discharging) icons
   if [ -n "$cap_int" ]; then
     idx=$((cap_int / 10))
     if [ "$idx" -ge 10 ]; then idx=9; fi
     icon="${DEFAULT_ICONS[$idx]}"
   else
     icon="$ICON_DISCHARGING"
+  fi
+elif [[ "$status_lc" == *"not charging"* ]] || [[ "$status_lc" == *"not-charging"* ]] || [[ "$status_lc" == *"pending-charge"* ]] || [[ "$status_lc" == *"pending charge"* ]]; then
+  # plugged but not actively charging: show default icons
+  if [ -n "$cap_int" ]; then
+    idx=$((cap_int / 10))
+    if [ "$idx" -ge 10 ]; then idx=9; fi
+    icon="${DEFAULT_ICONS[$idx]}"
+  else
+    icon="$ICON_UNKNOWN"
+  fi
+elif [[ "$status_lc" == *"charging"* ]]; then
+  # charging: use charging icons
+  if [ -n "$cap_int" ]; then
+    idx=$((cap_int / 10))
+    if [ "$idx" -ge 10 ]; then idx=9; fi
+    icon="${CHARGING_ICONS[$idx]}"
+  else
+    icon="$ICON_CHARGING"
   fi
 else
   icon="$ICON_UNKNOWN"
