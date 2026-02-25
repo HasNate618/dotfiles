@@ -4,7 +4,12 @@
   "position": "top",
   "spacing": 20,
   "height": 44,
-  "modules-left": ["custom/omarchy", "hyprland/workspaces", "custom/media-prev", "custom/media-playpause", "custom/media-next"],
+  "border-radius": 25,
+  "margin-right": 10,
+  "margin-left": 10,
+  "margin-top": 6,
+  "margin-bottom": 6,
+  "modules-left": ["custom/omarchy", "hyprland/workspaces", "custom/media"],
   "modules-center": ["custom/clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
   "modules-right": [
     "group/tray-expander",
@@ -47,6 +52,11 @@
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
   },
 
+  "custom/media": {
+    "exec": "title=$(playerctl metadata title 2>/dev/null); if [ -n \"$title\" ]; then echo \"  ${title:0:25} \"; else echo \"         No media           \"; fi",
+    "interval": 2,
+    "on-click": "playerctl play-pause"
+  },
   "custom/media-prev": {
     "exec": "/home/nate/.config/waybar/scripts/media_prev.sh",
     "return-type": "json",
