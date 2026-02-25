@@ -15,16 +15,18 @@
 /* three floating containers for left, center, right groups */
 .modules-left {
   margin-left: 10px;
-  margin-top: 8px;
-  padding: 8px 18px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 6px 24px;
   border-radius: 12px;
   background-color: rgba(18,17,17,0.02);
   border: 1px solid rgba(255,255,255,0.04);
 }
 
 .modules-center {
-  margin-top: 8px;
-  padding: 8px 18px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 6px 24px;
   border-radius: 12px;
   background-color: rgba(18,17,17,0.02);
   border: 1px solid rgba(255,255,255,0.04);
@@ -32,8 +34,9 @@
 
 .modules-right {
   margin-right: 10px;
-  margin-top: 8px;
-  padding: 8px 18px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 6px 24px;
   border-radius: 12px;
   background-color: rgba(18,17,17,0.02);
   border: 1px solid rgba(255,255,255,0.04);
