@@ -1,6 +1,4 @@
 @import "../omarchy/current/theme/waybar.css";
-@import "custom_overrides.css";
-
 
 * {
   background: transparent;

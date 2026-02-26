@@ -10,7 +10,7 @@
   "margin-top": 6,
   "margin-bottom": 6,
   "modules-left": ["custom/omarchy", "hyprland/workspaces", "custom/media"],
-  "modules-center": ["custom/clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
+  "modules-center": ["clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
   "modules-right": [
     "group/tray-expander",
     "bluetooth",
@@ -103,14 +103,9 @@
     "format": "{text}",
     "tooltip": true
   },
-
-  "custom/clock": {
-    "exec": "/home/nate/.config/waybar/scripts/clock_custom.sh",
-    "return-type": "json",
-    "interval": 30,
-    "format": "{text}",
-    "tooltip": true,
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+  "clock": {
+    "format": "{:%A %I:%M %p}",
+    "format-alt": "{:%d-%m-%Y}",
   },
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
