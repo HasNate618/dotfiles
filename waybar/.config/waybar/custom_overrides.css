@@ -1,6 +1,0 @@
-/* Custom overrides for Waybar */
-
-#custom-ram {
-  /* icon is now part of the text (on the right); add a bit of right padding */
-  padding-right: 10px;
-}
