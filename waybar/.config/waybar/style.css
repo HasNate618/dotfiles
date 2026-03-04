@@ -1,164 +1,113 @@
 @import "../omarchy/current/theme/waybar.css";
 
 * {
-  background: transparent;
-  color: @foreground;
-  border: none;
-  border-radius: 0;
+
+  border-radius: 10;
   min-height: 0;
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 16px;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 15px;
 }
 
-window#waybar {
-  background-color: rgba(18,17,17,0.02);
-  border-radius: 12px;
-  border: 2px solid rgba(100,100,100,0.2);
+#waybar {
+  border: 1px solid @foreground;
 }
 
 .modules-left {
-  padding: 0px 24px;
+  padding: 0px 12px;
+  margin-left: 8px;
 }
 
 .modules-right {
-  padding: 0px 24px;
+  padding: 0px 12px;
+  margin-right: 8px;
 }
 
-/* three floating containers for left, center, right groups
-.modules-left {
-  margin-left: 10px;
-  margin-top: 6px;
-  padding: 6px 24px;
-  border-radius: 12px;
-  background-color: rgba(18,17,17,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
 }
 
-.modules-center {
-  margin-top: 6px;
-  padding: 6px 24px;
-  border-radius: 12px;
-  background-color: rgba(18,17,17,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
+#workspaces button.empty {
+  opacity: 0.5;
 }
 
-.modules-right {
-  margin-right: 10px;
-  margin-top: 6px;
-  padding: 6px 24px;
-  border-radius: 12px;
-  background-color: rgba(18,17,17,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
-}*/
-
-#custom-omarchy,
-#custom-media,
-#custom-ram,
-#clock,
-#custom-update,
-#custom-voxtype,
-#custom-expand-icon,
-#tray,
-#bluetooth,
-#network,
-#custom-volume,
 #cpu,
-#custom-battery {
-  margin: 0 4px;
-  padding: 0;
+#pulseaudio,
+#custom-omarchy,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#custom-battery,
+#custom-volume,
+#custom-ram{
+  margin-right: 8px;
+}
+
+#memory {
+  min-width: 65px;
+  margin: 0 7.5px;
 }
 
 #tray {
-  margin-right: 4px;
+  margin-right: 16px;
 }
 
-#custom-update,
-#custom-screenrecording-indicator.active,
-#custom-voxtype.recording {
-  color: #a55555;
+#bluetooth {
+  margin-right: 17px;
 }
 
-menu, .menu, tooltip, window#waybar menu, window#waybar .menu, window#waybar #tray menu {
-  /* semi-opaque so Hyprland's ignore_alpha blur affects only menu area */
-  background-color: rgba(18,17,17,0.26);
-  color: @foreground;
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+#network {
+  margin-right: 13px;
 }
 
-window#waybar menu separator {
-  min-height: 1px;
-  background: rgba(255,255,255,0.03);
-  margin: 6px 0;
+#custom-expand-icon {
+  margin-right: 18px;
 }
 
-/* generic menu items */
-window#waybar menu *, window#waybar .menu * {
-  background: transparent;
-  color: @foreground;
-  padding: 6px 8px;
-  margin: 2px 0;
+tooltip {
+  padding: 2px;
 }
 
-/* compact tray context menus */
-window#waybar #tray menu,
-window#waybar #tray .menu {
-  padding: 4px 8px;
-  border-radius: 8px;
+#custom-update {
+  font-size: 10px;
 }
 
-window#waybar #tray menu *,
-window#waybar #tray .menu * {
-  background: transparent;
-  color: @foreground;
-  padding: 4px 6px;
-  margin: 0;
-  font-size: 13px;
+#clock {
+  margin-left: 8.75px;
 }
-
-window#waybar #tray menu separator,
-window#waybar #tray .menu separator {
-  min-height: 1px;
-  background: rgba(255,255,255,0.03);
-  margin: 4px 0;
-}
-
-/* keep tooltip/menu alpha above Hyprland's ignore_alpha threshold so blur is applied */
 
 .hidden {
   opacity: 0;
 }
 
-
-#workspaces button {
-  all: unset;
-  min-width: 16px;
-  min-height: 20px;
-  padding: 0 6px;
-  color: @foreground;
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 15px;
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  min-width: 12px;
+  margin-left: 5px;
+  margin-right: 0;
+  font-size: 10px;
+  padding-bottom: 1px;
 }
 
-#workspaces button.empty {
-  opacity: 0.35;
-  color: rgba(220, 252, 231, 0.35);
-}
-
-#workspaces button.active {
-  opacity: 1;
-}
-
-/* neutralize circular backgrounds from imported themes */
-.modules-left *, .modules-center *, .modules-right * {
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+#custom-screenrecording-indicator.active {
+  color: #a55555;
 }
 
 #custom-idle-indicator.active,
 #custom-notification-silencing-indicator.active {
+  color: #a55555;
+}
+
+#custom-voxtype {
+  min-width: 12px;
+  margin: 0 0 0 7.5px;
+}
+
+#custom-voxtype.recording {
   color: #a55555;
 }
