@@ -2,24 +2,24 @@
 
 * {
 
-  border-radius: 10;
+  border-radius: 0;
   min-height: 0;
   font-family: 'JetBrainsMono Nerd Font';
   font-size: 15px;
 }
 
 #waybar {
-  border: 1px solid @foreground;
+  /*border: 1px solid @foreground;*/
 }
 
 .modules-left {
   padding: 0px 12px;
-  margin-left: 8px;
+  margin-left: -2px;
 }
 
 .modules-right {
   padding: 0px 12px;
-  margin-right: 8px;
+  margin-right: -2px;
 }
 
 #workspaces button {
